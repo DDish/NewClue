@@ -8,6 +8,7 @@ import game.ClueGame;
 import game.Player;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Set;
 
 import org.junit.Before;
@@ -29,6 +30,8 @@ public class GameActionTests {
 	public void setup() throws BadConfigFormatException{
 		ClueGame game = new ClueGame("layout.csv", "legend.txt","cards.txt","players.txt");
 		game.loadConfigFiles();
+		game.initiateSolution();
+		game.dealCards();
 		board = game.getBoard();
 		weapons = game.getWeapons();
 		suspects = game.getSuspects();
@@ -67,16 +70,66 @@ public class GameActionTests {
 	}
 	
 	//Tests disproving a suggestion
-	// Assume the suggestion is made by player 1.  Suggestion is Miss Scarlett in the classroom with the knife.
+	// Assume the suggestion is made by player 2. 
 	@Test 
 	public void testDisprove() {
 		ClueGame game = new ClueGame("layout.csv","legend.txt","cards.txt","players.txt");
 		game.loadConfigFiles();
-		Set<Card> sgstn = game.createSuggestion();
-		game.checkSuggestion(sgstn);
-		
+		// Deals a testable scenario.
+		game.dealCardsContrived();
+		// Tests that one player reveals only possible card.
+		// Third player asked has only one card, "classroom."
+		Set<String> sgstn = game.createSuggestion("Reverend","classroom","knife");
+		game.setTurn(2);
+		ArrayList<Card> disproval = game.checkSuggestion(sgstn);
+		assertEquals(1,disproval.size());
+		assertTrue(disproval.get(0).getName().equals("classroom"));
+		// Tests that one player chooses randomly between 2 possible cards.
 		// Next two players have none of the suggested cards.  Third player has two cards, "Miss Scarlett" and "classroom."
-		
+		sgstn = game.createSuggestion("Miss Scarlett","classroom","knife");
+		game.setTurn(2);
+		disproval = game.checkSuggestion(sgstn);
+		assertEquals(1,disproval.size());
+		assertTrue(disproval.get(0).getName().equals("Miss Scarlett") || disproval.get(0).getName().equals("classroom"));
+	// Many tests ensuring that players are asked in order.
+		// Tests that null is returned by all players if no one can disprove.
+		sgstn = game.createSuggestion("Mrs. White","bathroom","bomb");
+		game.setTurn(2);
+		disproval = game.checkSuggestion(sgstn);
+		assertEquals(0,disproval.size());
+		// First player asked has the weapon, "revolver." Second player asked has the room, "study."
+		sgstn = game.createSuggestion("Reverend","study", "revolver");
+		game.setTurn(2);
+		disproval = game.checkSuggestion(sgstn);
+		assertEquals(1,disproval.size());
+		assertTrue(disproval.get(0).getName().equals("revolver"));
+		// Tests that all players are queried by giving last player chance to disprove.
+		// Player 3 suggests, Player 2 can disprove. 
+		sgstn = game.createSuggestion("Reverend","kitchen","rope");
+		game.setTurn(3);
+		disproval = game.checkSuggestion(sgstn);
+		assertEquals(1,disproval.size());
+		assertEquals("Reverend",disproval.get(0).getName());
+		// Test where human player makes suggestion.
+		// Next player has "Reverend."
+		sgstn = game.createSuggestion("Reverend","kitchen","rope");
+		game.setTurn(1);
+		disproval = game.checkSuggestion(sgstn);
+		assertEquals(1,disproval.size());
+		assertEquals("Reverend",disproval.get(0).getName());
+		// Tests that human player must reveal a card, and that it reveals only one card if it has many.
+		// Human player has all three suggested cards.
+		sgstn = game.createSuggestion("Colonel Mustard","family room","axe");
+		game.setTurn(2);
+		disproval = game.checkSuggestion(sgstn);
+		assertEquals(1,disproval.size());
+		assertTrue(disproval.get(0).getName().equals("Colonel Mustard") || disproval.get(0).getName().equals("axe") || disproval.get(0).getName().equals("family room"));
+		// Tests that the player whose turn it is does not return a card.
+		// Suggesting player has "Reverend." No one else has card to reveal.
+		sgstn = game.createSuggestion("Reverend","kitchen","rope");
+		game.setTurn(2);
+		disproval = game.checkSuggestion(sgstn);
+		assertEquals(0,disproval.size());
 		
 	}
 	

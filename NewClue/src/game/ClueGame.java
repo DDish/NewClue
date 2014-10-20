@@ -26,10 +26,13 @@ public class ClueGame {
 	private String legend;
 	private String cards;
 	private String contenders;
+	private int turn = 0;
 	
 	public static void main(String args[]) throws BadConfigFormatException{
 		ClueGame game = new ClueGame("ClueLayoutColumns.csv", "ClueLegend.txt","cards.txt","players.txt");
 		game.loadConfigFiles();
+		game.initiateSolution();
+		game.dealCards();
 	}
 
 	public ClueGame(String layout, String legend, String cards, String contenders){
@@ -58,8 +61,6 @@ public class ClueGame {
 		catch(BadConfigFormatException e){
 			System.out.println(e.getMessage());
 		}
-		initiateSolution();
-		dealCards();
 	}
 
 	public void loadCards() throws BadConfigFormatException {
@@ -175,6 +176,17 @@ public class ClueGame {
 		}		
 	}
 	
+	public void dealCardsContrived() {
+		players.get(4).giveCard(deck.get(0));
+		players.get(4).giveCard(deck.get(12));
+		players.get(2).giveCard(deck.get(15));
+		players.get(3).giveCard(deck.get(11));
+		players.get(1).giveCard(deck.get(3));
+		players.get(0).giveCard(deck.get(1));
+		players.get(0).giveCard(deck.get(7));
+		players.get(0).giveCard(deck.get(13));
+	}
+	
 	public Boolean checkAccusation(Set<String> accusation){
 		Set<String> solved = new HashSet<String>();
 		for(Card card : solution)
@@ -184,19 +196,13 @@ public class ClueGame {
 		return false;
 	}
 	
-	public Set<String> createSuggestion() {
+	public Set<String> createSuggestion(String person, String room, String weapon) {
 		Set<String> sgstn = new HashSet<String>();
 		return sgstn;
 	}
 	
-	public Boolean checkSuggestion(Set<String> suggestion) {
-		Set<String> solved = new HashSet<String>();
-		for(Card card : solution)
-			solved.add(card.getName());
-		if(suggestion.equals(solved))
-			return true;
-		else 
-			return false;
+	public ArrayList<Card> checkSuggestion(Set<String> suggestion) {
+			return null;
 	}
 	
 	// For testing purposes only.
@@ -220,5 +226,8 @@ public class ClueGame {
 	}
 	public Set<Card> getSolution() {
 		return solution;
+	}
+	public void setTurn(int trn) {
+		turn = trn;
 	}
 }

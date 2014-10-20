@@ -32,6 +32,8 @@ public class GameSetupTests {
 	public void setup() throws BadConfigFormatException{
 		ClueGame game = new ClueGame("layout.csv", "legend.txt","cards.txt","players.txt");
 		game.loadConfigFiles();
+		game.initiateSolution();
+		game.dealCards();
 		board = game.getBoard();
 		weapons = game.getWeapons();
 		suspects = game.getSuspects();
