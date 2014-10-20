@@ -183,6 +183,22 @@ public class ClueGame {
 			return true;
 		return false;
 	}
+	
+	public Set<String> createSuggestion() {
+		Set<String> sgstn = new HashSet<String>();
+		return sgstn;
+	}
+	
+	public Boolean checkSuggestion(Set<String> suggestion) {
+		Set<String> solved = new HashSet<String>();
+		for(Card card : solution)
+			solved.add(card.getName());
+		if(suggestion.equals(solved))
+			return true;
+		else 
+			return false;
+	}
+	
 	// For testing purposes only.
 	public ArrayList<Card> getSuspects(){
 		return suspects;

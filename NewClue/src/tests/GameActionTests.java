@@ -67,9 +67,17 @@ public class GameActionTests {
 	}
 	
 	//Tests disproving a suggestion
+	// Assume the suggestion is made by player 1.  Suggestion is Miss Scarlett in the classroom with the knife.
 	@Test 
 	public void testDisprove() {
-		fail("Not yet implemented");
+		ClueGame game = new ClueGame("layout.csv","legend.txt","cards.txt","players.txt");
+		game.loadConfigFiles();
+		Set<Card> sgstn = game.createSuggestion();
+		game.checkSuggestion(sgstn);
+		
+		// Next two players have none of the suggested cards.  Third player has two cards, "Miss Scarlett" and "classroom."
+		
+		
 	}
 	
 	//Tests making a suggestion
