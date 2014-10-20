@@ -1,0 +1,21 @@
+S,Miss Scarlett
+S,Colonel Mustard
+S,Mrs. White
+S,Reverend
+S,Mrs. Peacock
+S,Professor Plum
+W,knife
+W,axe
+W,rope
+W,bomb
+W,poison
+W,revolver
+R,classroom
+R,family room
+R,dining room
+R,study
+R,office
+R,library
+R,guest room
+R,kitchen
+R,bathroom

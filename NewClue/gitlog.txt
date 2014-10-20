@@ -1,0 +1,192 @@
+* commit 9de9a6b00179195a64d5f843b122b5573f09bc72 (HEAD, master)
+| Author: DDish <ddisharo@mymail.mines.edu>
+| Date:   Fri Oct 17 14:40:55 2014 -0600
+| 
+|     All Tests finally pass. Some failing tests added for next assignment.
+|  
+* commit 519bb363d7f7de0ca4b72816f9f8223c02691bb1
+| Author: DDish <ddisharo@mymail.mines.edu>
+| Date:   Fri Oct 17 13:30:02 2014 -0600
+| 
+|     Failing accusation tests added.
+|  
+* commit ed1f9767201d4ad4f4541438fb37572f4a729b9e
+| Author: DDish <ddisharo@mymail.mines.edu>
+| Date:   Fri Oct 17 12:40:47 2014 -0600
+| 
+|     Failing tests for dealing cards added.
+|  
+* commit 47e3902a1f9c4583f4069d0d11b956679aedc956
+| Author: DDish <ddisharo@mymail.mines.edu>
+| Date:   Thu Oct 16 22:14:30 2014 -0600
+| 
+|     Player color tests passes.
+|  
+* commit 0dd8b8444c2adcc5a602bf34be099f424f07ec75
+| Author: DDish <ddisharo@mymail.mines.edu>
+| Date:   Thu Oct 16 22:00:35 2014 -0600
+| 
+|     Fixed formatting bullcrap. Most tests pass.
+|    
+*   commit f66ce74f61f2b986bb587c76ae440208494e0ffb
+|\  Merge: 4bb8fc7 7af8311
+| | Author: DDish <ddisharo@mymail.mines.edu>
+| | Date:   Thu Oct 16 21:57:55 2014 -0600
+| | 
+| |     Merge https://github.com/avmeer/Clue-1
+| |   
+| * commit 7af8311ea37fdb28f236c1ccc772b09074ec2cff
+| | Author: Jess Boerner <jboerner@mines.edu>
+| | Date:   Thu Oct 16 17:33:39 2014 -0600
+| | 
+| |     Edited some tests, added some more. Need to write test for color and starting position (maybe can merge into one test that covers both since they can be connected easily) and need to finish tests for GameActions. Added HumanPlayer class and added Colors to players for cards.txt
+| |   
+| * commit 63d450c4d781934fc622a4683eab5ab1960776aa
+| | Author: unknown <ddisharo@MZ022-40.adit.mines.edu>
+| | Date:   Thu Oct 16 12:12:14 2014 -0600
+| | 
+| |     Added some code to make players from file. Tests still fail.
+| |   
+| * commit 38025ff2868b7876a2c55190c2a96bb094c367e7
+| | Author: unknown <ddisharo@MZ022-40.adit.mines.edu>
+| | Date:   Thu Oct 16 11:49:59 2014 -0600
+| | 
+| |     All card reading tests pass.
+| |   
+| * commit dbd9c959baa49f9fe51d38c3f050f056760573e6
+| | Author: unknown <ddisharo@MZ022-40.adit.mines.edu>
+| | Date:   Thu Oct 16 11:43:18 2014 -0600
+| | 
+| |     Three tests pass.
+| |   
+| * commit e56ec21efad8527c9e73b38a49ffe02ede24af33
+| | Author: unknown <ddisharo@MZ022-40.adit.mines.edu>
+| | Date:   Thu Oct 16 11:23:55 2014 -0600
+| | 
+| |     Tests for human/cpu players.  Tests for bad cards config file exception.
+| |   
+| * commit 868ee0cb40c23f5610cb055c04a60cdd2de07305
+| | Author: unknown <ddisharo@AH430-15.adit.mines.edu>
+| | Date:   Thu Oct 16 10:51:50 2014 -0600
+| | 
+| |     Failing test for number of players done.
+| |   
+| * commit 01236237222812bf924ef420d88407ee47f3531d
+| | Author: unknown <ddisharo@AH430-15.adit.mines.edu>
+| | Date:   Thu Oct 16 10:43:12 2014 -0600
+| | 
+| |     Additional testing methods added.  Failing card-reading tests done.
+| |   
+* | commit 4bb8fc79aaba804c254bed999e8f057440414eaa
+| | Author: unknown <ddisharo@AH430-15.adit.mines.edu>
+| | Date:   Thu Oct 16 10:03:15 2014 -0600
+| | 
+| |     Skeleton done. Time to start writing failing tests.
+| |   
+| * commit 60d4e0788879b52f77129d3be4de68dba0ff215a
+| | Author: Alan VanderMeer <avanderm@mymail.mines.edu>
+| | Date:   Wed Oct 1 19:28:38 2014 -0600
+| | 
+| |     Added documentation
+| |   
+| * commit 3323242299f7c079f2836f6711f668b4e6cff026
+| | Author: Alan VanderMeer <avanderm@mymail.mines.edu>
+| | Date:   Wed Oct 1 17:57:23 2014 -0600
+| | 
+| |     Got all of Rader's tests working
+| |   
+| * commit 81d98a790930fa144824a9ed756565d5c10e60aa
+| | Author: Alan VanderMeer <avanderm@mymail.mines.edu>
+| | Date:   Mon Sep 29 19:02:04 2014 -0600
+| | 
+| |     Moved experiments to its own folder
+| |   
+| * commit fd1c8741d41000d8f978987b4651592c9c0ca4b7
+| | Author: Alan VanderMeer <avanderm@mymail.mines.edu>
+| | Date:   Mon Sep 29 18:59:50 2014 -0600
+| | 
+| |     Moved everything into folders
+| |   
+| * commit de908b243f08c2b682f6ce4dab966f8ca5b3a12b
+| | Author: Alan VanderMeer <avanderm@mymail.mines.edu>
+| | Date:   Mon Sep 29 18:54:40 2014 -0600
+| | 
+| |     Added test cases for the adjacencies
+| |   
+* | commit 55c5e7f9bbe27cc16d42f3fb306a677a21f451b5
+| | Author: unknown <ddisharo@AH430-28.adit.mines.edu>
+| | Date:   Fri Sep 26 11:28:00 2014 -0600
+| | 
+| |     3 tests fail.
+| |   
+* | commit f48c3ef18ec1e6d524fe95648255d21602b618d6
+| | Author: unknown <ddisharo@AH430-28.adit.mines.edu>
+| | Date:   Fri Sep 26 11:26:48 2014 -0600
+| | 
+| |     3 Tests fail.
+| |   
+* | commit 614b179ec1f917d66b5b8f9d8a06de320ab6d986
+| | Author: Jess Boerner <jboerner@mines.edu>
+| | Date:   Thu Sep 25 18:00:18 2014 -0600
+| | 
+| |     tweaked tests a bit
+| |   
+* | commit 22e3c75c0742e4fff676f3dbfb2ba40e40db588f
+| | Author: Jess Boerner <jboerner@mines.edu>
+| | Date:   Thu Sep 25 13:20:29 2014 -0600
+| | 
+| |     adjlist tests pass... gettarget tests do not
+| |   
+* | commit ab8fa5fa5d16f7eedfb4bc4a8db64ced67f6dea8
+| | Author: unknown <ddisharo@MZ022-40.adit.mines.edu>
+| | Date:   Thu Sep 25 12:36:08 2014 -0600
+| | 
+| |     Added functionality of adjacency and target functions.
+| |   
+| * commit c7ba5254e1b3e3ab1eefdac5853b990c8afbef04
+| | Author: Jin Oh <joh@mymail.mines.edu>
+| | Date:   Thu Sep 25 12:17:00 2014 -0600
+| | 
+| |     changed
+| |   
+* | commit a72d7ebc1ae59bfa55d17e9bf926f7430f90dd21
+| | Author: unknown <ddisharo@AH430-29.adit.mines.edu>
+| | Date:   Wed Sep 24 22:43:58 2014 -0600
+| | 
+| |     Added pathfinding tests.
+| |   
+* | commit eb2f2fb996784448ab04f7d28b27eae1de194f7d
+| | Author: Jess Boerner <jboerner@mines.edu>
+| | Date:   Wed Sep 24 18:01:34 2014 -0600
+| | 
+| |     added tests for adjacency lists. TODO: finish pathmaking tests
+| |   
+| * commit b2ba093810e16d67ba1f64266e673b7520035197
+| | Author: Alan VanderMeer <avanderm@mymail.mines.edu>
+| | Date:   Wed Sep 24 18:00:56 2014 -0600
+| | 
+| |     Fixed adjacency finder
+| |   
+* | commit d1b383991e4cb9ed9aed5dff255d376b37dfec39
+| | Author: Jess Boerner <jboerner@mines.edu>
+| | Date:   Wed Sep 24 17:44:40 2014 -0600
+| | 
+| |     a few tweaks... added two sample tests
+| |   
+| * commit c9d160b8f41f9e7eec61518c099c7e08b8f0147d
+| | Author: Jin Soo Oh <joh@bb136-20.mines.edu>
+| | Date:   Wed Sep 24 16:53:34 2014 -0600
+| | 
+| |     broke everything!
+| |   
+* | commit 8cf98e12193f4b4013f5a9bdb367ec2594f3d6f0
+ /  Author: Jess Boerner <jboerner@mines.edu>
+|   Date:   Wed Sep 24 16:16:24 2014 -0600
+|   
+|       first commit... everything but tests written
+|  
+* commit c658acc5386af9751be410c96ddfa8850290cd6a
+  Author: Jin Oh <joh@mymail.mines.edu>
+  Date:   Tue Sep 23 17:48:11 2014 -0600
+  
+      first commit
