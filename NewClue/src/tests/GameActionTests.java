@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.*;
 import game.BadConfigFormatException;
 import game.Board;
+import game.BoardCell;
 import game.Card;
 import game.ClueGame;
 import game.Player;
@@ -65,16 +66,122 @@ public class GameActionTests {
 		assertEquals(false,game.checkAccusation(accusation));
 	}
 	
-	//Tests selecting a target location
+	//Tests selecting a target location for a CPU from a room to the hallway only
 	@Test 
-	public void testTarget() {
-		fail("Not yet implemented");
+	public void testTargetCPUStartRoom1() {
+		ArrayList<BoardCell> targets = new ArrayList<BoardCell>();
+		board.calcTargets(2, 2, 6);
+		Set<BoardCell> targets1 = board.getTargets();
+		BoardCell chooseCell = players.get(4).pickLocation(targets);
+		
+		//test targets starting from cell [2, 2] with a roll of six
+		assertEquals(15, targets.size());
+		assertEquals(true, targets.contains(board.getCellAt(0, 4)));
+		assertEquals(true, targets.contains(board.getCellAt(0, 6)));
+		assertEquals(true, targets.contains(board.getCellAt(1, 5)));
+		assertEquals(true, targets.contains(board.getCellAt(2, 4)));
+		assertEquals(true, targets.contains(board.getCellAt(2, 6)));
+		assertEquals(true, targets.contains(board.getCellAt(3, 3)));
+		assertEquals(true, targets.contains(board.getCellAt(3, 5)));
+		assertEquals(true, targets.contains(board.getCellAt(3, 7)));
+		assertEquals(true, targets.contains(board.getCellAt(4, 0)));
+		assertEquals(true, targets.contains(board.getCellAt(4, 2)));
+		assertEquals(true, targets.contains(board.getCellAt(4, 4)));
+		assertEquals(true, targets.contains(board.getCellAt(4, 6)));
+		assertEquals(true, targets.contains(board.getCellAt(5, 1)));
+		assertEquals(true, targets.contains(board.getCellAt(5, 3)));
+		assertEquals(true, targets.contains(board.getCellAt(5, 5)));
+		
+		//test that one of these is picked correctly
+		
+				assertEquals(true, targets.contains(chooseCell));
+		
 	}
+	
+	//Tests selecting a target location for a CPU from a room to  the hallway but also including a possible room
+		@Test 
+		public void testTargetCPUStartRoom2() {
+			board.calcTargets(7, 20, 5);
+			Set<BoardCell> targets = board.getTargets();
+			BoardCell chooseCell = players.get(4).pickLocation(targets);
+			
+			//test targets starting from [7,20] with a roll of 5
+			assertEquals(11, targets.size());
+			assertEquals(true, targets.contains(board.getCellAt(3, 19)));
+			assertEquals(true, targets.contains(board.getCellAt(4, 18)));
+			assertEquals(true, targets.contains(board.getCellAt(4, 20)));
+			assertEquals(true, targets.contains(board.getCellAt(4, 22)));
+			assertEquals(true, targets.contains(board.getCellAt(5, 17)));
+			assertEquals(true, targets.contains(board.getCellAt(5, 19)));
+			assertEquals(true, targets.contains(board.getCellAt(5, 21)));
+			assertEquals(true, targets.contains(board.getCellAt(6, 16)));
+			assertEquals(true, targets.contains(board.getCellAt(6, 18)));
+			assertEquals(true, targets.contains(board.getCellAt(6, 20)));
+			assertEquals(true, targets.contains(board.getCellAt(6, 22)));
+			
+			//test that one of these is picked correctly
+			
+			assertEquals(true, targets.contains(chooseCell));
+			
+		}
+	
+	//Tests selecting a target location for a CPU from the hallway/walkway to another hallway/walkway space only
+	@Test 
+	public void testTargetCPUStartHall1() {
+		board.calcTargets(13, 10, 4);
+		Set<BoardCell> targets = board.getTargets();
+		BoardCell chooseCell = players.get(4).pickLocation(targets);
+		
+		//test targets starting from [13,10] with a roll of 4
+		assertEquals(18, targets.size());
+		assertEquals(true, targets.contains(board.getCellAt(10, 9)));
+		assertEquals(true, targets.contains(board.getCellAt(11, 8)));
+		assertEquals(true, targets.contains(board.getCellAt(12, 7)));
+		assertEquals(true, targets.contains(board.getCellAt(12, 9)));
+		assertEquals(true, targets.contains(board.getCellAt(13, 6)));
+		assertEquals(true, targets.contains(board.getCellAt(13, 8)));
+		assertEquals(true, targets.contains(board.getCellAt(13, 12)));
+		assertEquals(true, targets.contains(board.getCellAt(13, 14)));
+		assertEquals(true, targets.contains(board.getCellAt(14, 7)));
+		assertEquals(true, targets.contains(board.getCellAt(14, 9)));
+		assertEquals(true, targets.contains(board.getCellAt(14, 11)));
+		assertEquals(true, targets.contains(board.getCellAt(14, 13)));
+		assertEquals(true, targets.contains(board.getCellAt(15, 8)));
+		assertEquals(true, targets.contains(board.getCellAt(15, 10)));
+		assertEquals(true, targets.contains(board.getCellAt(15, 12)));
+		assertEquals(true, targets.contains(board.getCellAt(16, 9)));
+		assertEquals(true, targets.contains(board.getCellAt(16, 11)));
+		assertEquals(true, targets.contains(board.getCellAt(17, 10)));
+		
+		//test that one of these is picked correctly
+		
+		assertEquals(true, targets.contains(chooseCell));
+	}
+	
+	//Tests selecting a target location for a CPU from the hallway/walkway to a possible room
+		@Test 
+		public void testTargetCPUStartHall2() {
+			board.calcTargets(12, 0, 3);
+			Set<BoardCell> targets = board.getTargets();
+			BoardCell chooseCell = players.get(4).pickLocation(targets);
+			
+			//test targets starting from [12,0] with a roll of 3
+			assertEquals(5, targets.size());
+			assertEquals(true, targets.contains(board.getCellAt(11, 1)));
+			assertEquals(true, targets.contains(board.getCellAt(11, 3)));
+			assertEquals(true, targets.contains(board.getCellAt(12, 0)));
+			assertEquals(true, targets.contains(board.getCellAt(12, 2)));
+			assertEquals(true, targets.contains(board.getCellAt(13, 0)));
+			
+			//test that one of these is picked correctly
+			
+			assertEquals(true, targets.contains(chooseCell));
+		}
 	
 	//Tests disproving a suggestion
 	// Assume the suggestion is made by player 2. 
 	@Test 
-	public void testDisprove() {
+	public void testDisproveComprehensive() {
 		ClueGame game = new ClueGame("layout.csv","legend.txt","cards.txt","players.txt");
 		game.loadConfigFiles();
 		// Deals a testable scenario.
