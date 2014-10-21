@@ -198,11 +198,26 @@ public class ClueGame {
 	
 	public Set<String> createSuggestion(String person, String room, String weapon) {
 		Set<String> sgstn = new HashSet<String>();
+		sgstn.add(person);
+		sgstn.add(room);
+		sgstn.add(weapon);
 		return sgstn;
 	}
 	
 	public ArrayList<Card> checkSuggestion(Set<String> suggestion) {
-			return null;
+		ArrayList<Card> disproval = new ArrayList<Card>();
+		Boolean disproved = false;
+		int sugPlayer = turn % 6-1;
+		int dispPlayer = sugPlayer;
+		for(int i = 1; i < 6 && disproved.equals(false); i++) {
+			dispPlayer = dispPlayer + 1;
+			if(dispPlayer == 6) dispPlayer = 0;
+			if(players.get(dispPlayer).disproveSuggestion(suggestion)!= null) {
+				disproval.add(players.get(dispPlayer).disproveSuggestion(suggestion));
+				disproved = true;
+			}
+		}
+		return disproval;
 	}
 	
 	// For testing purposes only.

@@ -45,8 +45,10 @@ public class GameActionTests {
 	@Test 
 	public void testAccusationResponse() {
 		//Correct accusation.
-		ClueGame game = new ClueGame("layout.csv","legend.txt","cards.txt","players.txt");
+		ClueGame game = new ClueGame("layout.csv", "legend.txt","cards.txt","players.txt");
 		game.loadConfigFiles();
+		game.initiateSolution();
+		game.dealCards();
 		Set<String> accusation = players.get(1).makeAccusation("Miss Scarlett","classroom", "knife");
 		assertEquals(true,game.checkAccusation(accusation));
 		//Wrong room
@@ -79,7 +81,7 @@ public class GameActionTests {
 		game.dealCardsContrived();
 		// Tests that one player reveals only possible card.
 		// Third player asked has only one card, "classroom."
-		Set<String> sgstn = game.createSuggestion("Reverend","classroom","knife");
+		Set<String> sgstn = game.createSuggestion("Professor Plum","classroom","knife");
 		game.setTurn(2);
 		ArrayList<Card> disproval = game.checkSuggestion(sgstn);
 		assertEquals(1,disproval.size());
@@ -97,12 +99,12 @@ public class GameActionTests {
 		game.setTurn(2);
 		disproval = game.checkSuggestion(sgstn);
 		assertEquals(0,disproval.size());
-		// First player asked has the weapon, "revolver." Second player asked has the room, "study."
+		// First player asked has the weapon, "study." Second player asked has the room, "revolver."
 		sgstn = game.createSuggestion("Reverend","study", "revolver");
 		game.setTurn(2);
 		disproval = game.checkSuggestion(sgstn);
 		assertEquals(1,disproval.size());
-		assertTrue(disproval.get(0).getName().equals("revolver"));
+		assertTrue(disproval.get(0).getName().equals("study"));
 		// Tests that all players are queried by giving last player chance to disprove.
 		// Player 3 suggests, Player 2 can disprove. 
 		sgstn = game.createSuggestion("Reverend","kitchen","rope");
@@ -130,7 +132,6 @@ public class GameActionTests {
 		game.setTurn(2);
 		disproval = game.checkSuggestion(sgstn);
 		assertEquals(0,disproval.size());
-		
 	}
 	
 	//Tests making a suggestion

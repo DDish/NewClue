@@ -16,7 +16,7 @@ public abstract class Player {
 	private BoardCell position;
 	private Set<Card> seen = new HashSet<Card>();
 	
-	public abstract Card disproveSuggestion(String person, String room, String weapon);
+	public abstract Card disproveSuggestion(Set<String> suggestion);
 	public abstract Set<String> makeAccusation(String person, String room, String weapon);
 
 	public void giveCard(Card crd) {

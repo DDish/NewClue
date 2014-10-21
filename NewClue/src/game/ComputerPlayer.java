@@ -1,5 +1,6 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,13 +16,7 @@ public class ComputerPlayer extends Player {
 	}
 	
 	public void pickLocation(Set<BoardCell> targets) {}
-	@Override
-	public Card disproveSuggestion(String person, String room, String weapon) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
 	public Set<String> makeAccusation(String person, String room, String weapon) {
 		// TODO Auto-generated method stub
 		Set<String> accusation = new HashSet<String>();
@@ -29,6 +24,19 @@ public class ComputerPlayer extends Player {
 		accusation.add(room);
 		accusation.add(weapon);
 		return accusation;
+	}
+
+	@Override
+	public Card disproveSuggestion(Set<String> suggestion) {
+		Card debunked = null;
+		ArrayList<Card> hand = this.getCards();
+		for(Card crd : hand) {
+			for(String name : suggestion) {
+				if(crd.getName().equals(name))
+					debunked = crd;
+			}
+		}
+		return debunked;
 	}
 	
 }
