@@ -69,9 +69,8 @@ public class GameActionTests {
 	//Tests selecting a target location for a CPU from a room to the hallway only
 	@Test 
 	public void testTargetCPUStartRoom1() {
-		ArrayList<BoardCell> targets = new ArrayList<BoardCell>();
 		board.calcTargets(2, 2, 6);
-		Set<BoardCell> targets1 = board.getTargets();
+		Set<BoardCell> targets = board.getTargets();
 		BoardCell chooseCell = players.get(4).pickLocation(targets);
 		
 		//test targets starting from cell [2, 2] with a roll of six

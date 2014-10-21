@@ -15,7 +15,10 @@ public class ComputerPlayer extends Player {
 		this.setStartPosition(cell);
 	}
 	
-	public void pickLocation(Set<BoardCell> targets) {}
+	public BoardCell pickLocation(Set<BoardCell> targets) {
+		return null;
+		
+	}
 
 	public Set<String> makeAccusation(String person, String room, String weapon) {
 		// TODO Auto-generated method stub

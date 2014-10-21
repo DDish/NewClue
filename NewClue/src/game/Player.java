@@ -61,5 +61,9 @@ public abstract class Player {
 	public BoardCell getPosition() {
 		return position;
 	}
+	
+	public BoardCell pickLocation(Set<BoardCell> targets) {
+		return null;
+	}
 }
 
