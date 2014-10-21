@@ -1,6 +1,0 @@
-H,HumanPlayer,red,12,0
-C,CPU1,yellow,21,6
-C,CPU2,white,14,22
-C,CPU3,black,5,22
-C,CPU4,blue,0,13
-C,CPU5,purple,0,5
