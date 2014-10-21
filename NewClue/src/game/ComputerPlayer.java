@@ -2,10 +2,12 @@ package game;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class ComputerPlayer extends Player {
-	private char lastRoomVisited;
+	private BoardCell lastRoomVisited;
+	Random ranPlayer = new Random();
 	
 	public ComputerPlayer(PlayerType tp, String nm, String clr, BoardCell cell) {
 		super();
@@ -16,7 +18,18 @@ public class ComputerPlayer extends Player {
 	}
 	
 	public BoardCell pickLocation(Set<BoardCell> targets) {
-		return null;
+		//first check for any rooms in targets that have not been last visited
+		for( BoardCell cells : targets ) {
+			if( cells.isDoorway() && cells.equals(lastRoomVisited) ) {
+				lastRoomVisited = cells;
+				return cells;
+			}
+		}
+		
+		//if no rooms to go to, pick random location from targets (might pick last room)
+		BoardCell[] targetsArray = (BoardCell[]) targets.toArray();
+		int rand = ranPlayer.nextInt() % targets.size();
+		return targetsArray[rand];
 		
 	}
 
